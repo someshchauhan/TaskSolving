@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="24383614dad64c84a425e1a1d687e90f" Name="Diagram1">
+        <EntityTypeShape EntityType="Database1Model.Facility" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Hotel" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.HotelImage" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.InterestPoint" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Room" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.RoomFacility" Width="1.5" PointX="5.25" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.RoomStay" Width="1.5" PointX="5.25" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.RoomStayFacility" Width="1.5" PointX="7.5" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Terminal" Width="1.5" PointX="3" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.WildcardRoomDescription" Width="1.5" PointX="3" PointY="23.25" IsExpanded="true" />
+        <AssociationConnector Association="Database1Model.FK__Facility__HotelI__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK__HotelImag__Hotel__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK__InterestP__Hotel__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK__Room__HotelId__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK__Terminal__HotelI__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK__WildcardR__Hotel__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK__RoomFacil__RoomI__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK__RoomStay__RoomId__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK__RoomStayF__RoomS__4316F928" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

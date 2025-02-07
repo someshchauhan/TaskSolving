@@ -1,0 +1,838 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Database1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Facility">
+          <Key>
+            <PropertyRef Name="FacilityId" />
+          </Key>
+          <Property Name="FacilityId" Type="int" Nullable="false" />
+          <Property Name="HotelId" Type="int" />
+          <Property Name="FacilityCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="FacilityGroupCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="FacilityOrder" Type="int" />
+          <Property Name="IndYesOrNo" Type="bit" />
+          <Property Name="Number" Type="int" />
+          <Property Name="Distance" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="IndLogic" Type="bit" />
+          <Property Name="IndFee" Type="bit" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" />
+          <Property Name="ApplicationType" Type="nvarchar" MaxLength="50" />
+          <Property Name="TimeFrom" Type="time" Precision="7" />
+          <Property Name="TimeTo" Type="time" Precision="7" />
+          <Property Name="Voucher" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="HotelId" />
+          </Key>
+          <Property Name="HotelId" Type="int" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CountryCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="StateCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Longitude" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="Latitude" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="CategoryCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryGroupCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChainCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="AccommodationTypeCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="License" Type="nvarchar" MaxLength="100" />
+          <Property Name="Website" Type="nvarchar" MaxLength="255" />
+          <Property Name="Ranking" Type="int" />
+          <Property Name="LastUpdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HotelImage">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="int" Nullable="false" />
+          <Property Name="HotelId" Type="int" />
+          <Property Name="ImageTypeCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Path" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageOrder" Type="int" />
+          <Property Name="VisualOrder" Type="int" />
+          <Property Name="RoomCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoomType" Type="nvarchar" MaxLength="100" />
+          <Property Name="CharacteristicCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="InterestPoint">
+          <Key>
+            <PropertyRef Name="InterestPointId" />
+          </Key>
+          <Property Name="InterestPointId" Type="int" Nullable="false" />
+          <Property Name="HotelId" Type="int" />
+          <Property Name="FacilityCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="FacilityGroupCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="POIName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Distance" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="RoomId" />
+          </Key>
+          <Property Name="RoomId" Type="int" Nullable="false" />
+          <Property Name="HotelId" Type="int" />
+          <Property Name="RoomCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoomType" Type="nvarchar" MaxLength="100" />
+          <Property Name="CharacteristicCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsParentRoom" Type="bit" />
+          <Property Name="MinPax" Type="int" />
+          <Property Name="MaxPax" Type="int" />
+          <Property Name="MaxAdults" Type="int" />
+          <Property Name="MaxChildren" Type="int" />
+          <Property Name="MinAdults" Type="int" />
+        </EntityType>
+        <EntityType Name="RoomFacility">
+          <Key>
+            <PropertyRef Name="RoomFacilityId" />
+          </Key>
+          <Property Name="RoomFacilityId" Type="int" Nullable="false" />
+          <Property Name="RoomId" Type="int" />
+          <Property Name="FacilityCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="FacilityGroupCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Number" Type="int" />
+          <Property Name="IndLogic" Type="bit" />
+          <Property Name="IndYesOrNo" Type="bit" />
+          <Property Name="Voucher" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RoomStay">
+          <Key>
+            <PropertyRef Name="RoomStayId" />
+          </Key>
+          <Property Name="RoomStayId" Type="int" Nullable="false" />
+          <Property Name="RoomId" Type="int" />
+          <Property Name="StayType" Type="nvarchar" MaxLength="50" />
+          <Property Name="StayOrder" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="RoomStayFacility">
+          <Key>
+            <PropertyRef Name="RoomStayFacilityId" />
+          </Key>
+          <Property Name="RoomStayFacilityId" Type="int" Nullable="false" />
+          <Property Name="RoomStayId" Type="int" />
+          <Property Name="FacilityCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="FacilityGroupCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Number" Type="int" />
+        </EntityType>
+        <EntityType Name="Terminal">
+          <Key>
+            <PropertyRef Name="TerminalId" />
+          </Key>
+          <Property Name="TerminalId" Type="int" Nullable="false" />
+          <Property Name="HotelId" Type="int" />
+          <Property Name="TerminalCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Distance" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="WildcardRoomDescription">
+          <Key>
+            <PropertyRef Name="WildcardId" />
+          </Key>
+          <Property Name="WildcardId" Type="int" Nullable="false" />
+          <Property Name="HotelId" Type="int" />
+          <Property Name="RoomType" Type="nvarchar" MaxLength="100" />
+          <Property Name="RoomCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CharacteristicCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK__Facility__HotelI__45F365D3">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Facility" Type="Self.Facility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="Facility">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HotelImag__Hotel__4E88ABD4">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HotelImage" Type="Self.HotelImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="HotelImage">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__InterestP__Hotel__4BAC3F29">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InterestPoint" Type="Self.InterestPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="InterestPoint">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room__HotelId__3A81B327">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoomFacil__RoomI__3D5E1FD2">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoomFacility" Type="Self.RoomFacility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomId" />
+            </Principal>
+            <Dependent Role="RoomFacility">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoomStay__RoomId__403A8C7D">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoomStay" Type="Self.RoomStay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomId" />
+            </Principal>
+            <Dependent Role="RoomStay">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoomStayF__RoomS__4316F928">
+          <End Role="RoomStay" Type="Self.RoomStay" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoomStayFacility" Type="Self.RoomStayFacility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomStay">
+              <PropertyRef Name="RoomStayId" />
+            </Principal>
+            <Dependent Role="RoomStayFacility">
+              <PropertyRef Name="RoomStayId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Terminal__HotelI__48CFD27E">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Terminal" Type="Self.Terminal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="Terminal">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WildcardR__Hotel__5165187F">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WildcardRoomDescription" Type="Self.WildcardRoomDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="WildcardRoomDescription">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Database1ModelStoreContainer">
+          <EntitySet Name="Facility" EntityType="Self.Facility" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HotelImage" EntityType="Self.HotelImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InterestPoint" EntityType="Self.InterestPoint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoomFacility" EntityType="Self.RoomFacility" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoomStay" EntityType="Self.RoomStay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoomStayFacility" EntityType="Self.RoomStayFacility" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Terminal" EntityType="Self.Terminal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WildcardRoomDescription" EntityType="Self.WildcardRoomDescription" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Facility__HotelI__45F365D3" Association="Self.FK__Facility__HotelI__45F365D3">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="Facility" EntitySet="Facility" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HotelImag__Hotel__4E88ABD4" Association="Self.FK__HotelImag__Hotel__4E88ABD4">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="HotelImage" EntitySet="HotelImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__InterestP__Hotel__4BAC3F29" Association="Self.FK__InterestP__Hotel__4BAC3F29">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="InterestPoint" EntitySet="InterestPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room__HotelId__3A81B327" Association="Self.FK__Room__HotelId__3A81B327">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoomFacil__RoomI__3D5E1FD2" Association="Self.FK__RoomFacil__RoomI__3D5E1FD2">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="RoomFacility" EntitySet="RoomFacility" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoomStay__RoomId__403A8C7D" Association="Self.FK__RoomStay__RoomId__403A8C7D">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="RoomStay" EntitySet="RoomStay" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoomStayF__RoomS__4316F928" Association="Self.FK__RoomStayF__RoomS__4316F928">
+            <End Role="RoomStay" EntitySet="RoomStay" />
+            <End Role="RoomStayFacility" EntitySet="RoomStayFacility" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Terminal__HotelI__48CFD27E" Association="Self.FK__Terminal__HotelI__48CFD27E">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="Terminal" EntitySet="Terminal" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WildcardR__Hotel__5165187F" Association="Self.FK__WildcardR__Hotel__5165187F">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="WildcardRoomDescription" EntitySet="WildcardRoomDescription" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Facility">
+          <Key>
+            <PropertyRef Name="FacilityId" />
+          </Key>
+          <Property Name="FacilityId" Type="Int32" Nullable="false" />
+          <Property Name="HotelId" Type="Int32" />
+          <Property Name="FacilityCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FacilityGroupCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FacilityOrder" Type="Int32" />
+          <Property Name="IndYesOrNo" Type="Boolean" />
+          <Property Name="Number" Type="Int32" />
+          <Property Name="Distance" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="IndLogic" Type="Boolean" />
+          <Property Name="IndFee" Type="Boolean" />
+          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TimeFrom" Type="Time" Precision="7" />
+          <Property Name="TimeTo" Type="Time" Precision="7" />
+          <Property Name="Voucher" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK__Facility__HotelI__45F365D3" FromRole="Facility" ToRole="Hotel" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="HotelId" />
+          </Key>
+          <Property Name="HotelId" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountryCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="StateCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="Latitude" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="CategoryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryGroupCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChainCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccommodationTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="License" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Ranking" Type="Int32" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Facilities" Relationship="Self.FK__Facility__HotelI__45F365D3" FromRole="Hotel" ToRole="Facility" />
+          <NavigationProperty Name="HotelImages" Relationship="Self.FK__HotelImag__Hotel__4E88ABD4" FromRole="Hotel" ToRole="HotelImage" />
+          <NavigationProperty Name="InterestPoints" Relationship="Self.FK__InterestP__Hotel__4BAC3F29" FromRole="Hotel" ToRole="InterestPoint" />
+          <NavigationProperty Name="Rooms" Relationship="Self.FK__Room__HotelId__3A81B327" FromRole="Hotel" ToRole="Room" />
+          <NavigationProperty Name="Terminals" Relationship="Self.FK__Terminal__HotelI__48CFD27E" FromRole="Hotel" ToRole="Terminal" />
+          <NavigationProperty Name="WildcardRoomDescriptions" Relationship="Self.FK__WildcardR__Hotel__5165187F" FromRole="Hotel" ToRole="WildcardRoomDescription" />
+        </EntityType>
+        <EntityType Name="HotelImage">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="Int32" Nullable="false" />
+          <Property Name="HotelId" Type="Int32" />
+          <Property Name="ImageTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Path" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageOrder" Type="Int32" />
+          <Property Name="VisualOrder" Type="Int32" />
+          <Property Name="RoomCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoomType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CharacteristicCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK__HotelImag__Hotel__4E88ABD4" FromRole="HotelImage" ToRole="Hotel" />
+        </EntityType>
+        <EntityType Name="InterestPoint">
+          <Key>
+            <PropertyRef Name="InterestPointId" />
+          </Key>
+          <Property Name="InterestPointId" Type="Int32" Nullable="false" />
+          <Property Name="HotelId" Type="Int32" />
+          <Property Name="FacilityCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FacilityGroupCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="POIName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Distance" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK__InterestP__Hotel__4BAC3F29" FromRole="InterestPoint" ToRole="Hotel" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="RoomId" />
+          </Key>
+          <Property Name="RoomId" Type="Int32" Nullable="false" />
+          <Property Name="HotelId" Type="Int32" />
+          <Property Name="RoomCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoomType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CharacteristicCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsParentRoom" Type="Boolean" />
+          <Property Name="MinPax" Type="Int32" />
+          <Property Name="MaxPax" Type="Int32" />
+          <Property Name="MaxAdults" Type="Int32" />
+          <Property Name="MaxChildren" Type="Int32" />
+          <Property Name="MinAdults" Type="Int32" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK__Room__HotelId__3A81B327" FromRole="Room" ToRole="Hotel" />
+          <NavigationProperty Name="RoomFacilities" Relationship="Self.FK__RoomFacil__RoomI__3D5E1FD2" FromRole="Room" ToRole="RoomFacility" />
+          <NavigationProperty Name="RoomStays" Relationship="Self.FK__RoomStay__RoomId__403A8C7D" FromRole="Room" ToRole="RoomStay" />
+        </EntityType>
+        <EntityType Name="RoomFacility">
+          <Key>
+            <PropertyRef Name="RoomFacilityId" />
+          </Key>
+          <Property Name="RoomFacilityId" Type="Int32" Nullable="false" />
+          <Property Name="RoomId" Type="Int32" />
+          <Property Name="FacilityCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FacilityGroupCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Number" Type="Int32" />
+          <Property Name="IndLogic" Type="Boolean" />
+          <Property Name="IndYesOrNo" Type="Boolean" />
+          <Property Name="Voucher" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Room" Relationship="Self.FK__RoomFacil__RoomI__3D5E1FD2" FromRole="RoomFacility" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="RoomStay">
+          <Key>
+            <PropertyRef Name="RoomStayId" />
+          </Key>
+          <Property Name="RoomStayId" Type="Int32" Nullable="false" />
+          <Property Name="RoomId" Type="Int32" />
+          <Property Name="StayType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StayOrder" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Room" Relationship="Self.FK__RoomStay__RoomId__403A8C7D" FromRole="RoomStay" ToRole="Room" />
+          <NavigationProperty Name="RoomStayFacilities" Relationship="Self.FK__RoomStayF__RoomS__4316F928" FromRole="RoomStay" ToRole="RoomStayFacility" />
+        </EntityType>
+        <EntityType Name="RoomStayFacility">
+          <Key>
+            <PropertyRef Name="RoomStayFacilityId" />
+          </Key>
+          <Property Name="RoomStayFacilityId" Type="Int32" Nullable="false" />
+          <Property Name="RoomStayId" Type="Int32" />
+          <Property Name="FacilityCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FacilityGroupCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Number" Type="Int32" />
+          <NavigationProperty Name="RoomStay" Relationship="Self.FK__RoomStayF__RoomS__4316F928" FromRole="RoomStayFacility" ToRole="RoomStay" />
+        </EntityType>
+        <EntityType Name="Terminal">
+          <Key>
+            <PropertyRef Name="TerminalId" />
+          </Key>
+          <Property Name="TerminalId" Type="Int32" Nullable="false" />
+          <Property Name="HotelId" Type="Int32" />
+          <Property Name="TerminalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Distance" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK__Terminal__HotelI__48CFD27E" FromRole="Terminal" ToRole="Hotel" />
+        </EntityType>
+        <EntityType Name="WildcardRoomDescription">
+          <Key>
+            <PropertyRef Name="WildcardId" />
+          </Key>
+          <Property Name="WildcardId" Type="Int32" Nullable="false" />
+          <Property Name="HotelId" Type="Int32" />
+          <Property Name="RoomType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RoomCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CharacteristicCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK__WildcardR__Hotel__5165187F" FromRole="WildcardRoomDescription" ToRole="Hotel" />
+        </EntityType>
+        <Association Name="FK__Facility__HotelI__45F365D3">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Facility" Type="Self.Facility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="Facility">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HotelImag__Hotel__4E88ABD4">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HotelImage" Type="Self.HotelImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="HotelImage">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__InterestP__Hotel__4BAC3F29">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InterestPoint" Type="Self.InterestPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="InterestPoint">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room__HotelId__3A81B327">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Terminal__HotelI__48CFD27E">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Terminal" Type="Self.Terminal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="Terminal">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WildcardR__Hotel__5165187F">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WildcardRoomDescription" Type="Self.WildcardRoomDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelId" />
+            </Principal>
+            <Dependent Role="WildcardRoomDescription">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoomFacil__RoomI__3D5E1FD2">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoomFacility" Type="Self.RoomFacility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomId" />
+            </Principal>
+            <Dependent Role="RoomFacility">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoomStay__RoomId__403A8C7D">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoomStay" Type="Self.RoomStay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomId" />
+            </Principal>
+            <Dependent Role="RoomStay">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoomStayF__RoomS__4316F928">
+          <End Role="RoomStay" Type="Self.RoomStay" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoomStayFacility" Type="Self.RoomStayFacility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomStay">
+              <PropertyRef Name="RoomStayId" />
+            </Principal>
+            <Dependent Role="RoomStayFacility">
+              <PropertyRef Name="RoomStayId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Facilities" EntityType="Self.Facility" />
+          <EntitySet Name="Hotels" EntityType="Self.Hotel" />
+          <EntitySet Name="HotelImages" EntityType="Self.HotelImage" />
+          <EntitySet Name="InterestPoints" EntityType="Self.InterestPoint" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="RoomFacilities" EntityType="Self.RoomFacility" />
+          <EntitySet Name="RoomStays" EntityType="Self.RoomStay" />
+          <EntitySet Name="RoomStayFacilities" EntityType="Self.RoomStayFacility" />
+          <EntitySet Name="Terminals" EntityType="Self.Terminal" />
+          <EntitySet Name="WildcardRoomDescriptions" EntityType="Self.WildcardRoomDescription" />
+          <AssociationSet Name="FK__Facility__HotelI__45F365D3" Association="Self.FK__Facility__HotelI__45F365D3">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="Facility" EntitySet="Facilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HotelImag__Hotel__4E88ABD4" Association="Self.FK__HotelImag__Hotel__4E88ABD4">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="HotelImage" EntitySet="HotelImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__InterestP__Hotel__4BAC3F29" Association="Self.FK__InterestP__Hotel__4BAC3F29">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="InterestPoint" EntitySet="InterestPoints" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room__HotelId__3A81B327" Association="Self.FK__Room__HotelId__3A81B327">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="Room" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Terminal__HotelI__48CFD27E" Association="Self.FK__Terminal__HotelI__48CFD27E">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="Terminal" EntitySet="Terminals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WildcardR__Hotel__5165187F" Association="Self.FK__WildcardR__Hotel__5165187F">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="WildcardRoomDescription" EntitySet="WildcardRoomDescriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoomFacil__RoomI__3D5E1FD2" Association="Self.FK__RoomFacil__RoomI__3D5E1FD2">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="RoomFacility" EntitySet="RoomFacilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoomStay__RoomId__403A8C7D" Association="Self.FK__RoomStay__RoomId__403A8C7D">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="RoomStay" EntitySet="RoomStays" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoomStayF__RoomS__4316F928" Association="Self.FK__RoomStayF__RoomS__4316F928">
+            <End Role="RoomStay" EntitySet="RoomStays" />
+            <End Role="RoomStayFacility" EntitySet="RoomStayFacilities" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Database1Entities">
+          <EntitySetMapping Name="Facilities">
+            <EntityTypeMapping TypeName="Database1Model.Facility">
+              <MappingFragment StoreEntitySet="Facility">
+                <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="FacilityCode" ColumnName="FacilityCode" />
+                <ScalarProperty Name="FacilityGroupCode" ColumnName="FacilityGroupCode" />
+                <ScalarProperty Name="FacilityOrder" ColumnName="FacilityOrder" />
+                <ScalarProperty Name="IndYesOrNo" ColumnName="IndYesOrNo" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="IndLogic" ColumnName="IndLogic" />
+                <ScalarProperty Name="IndFee" ColumnName="IndFee" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="ApplicationType" ColumnName="ApplicationType" />
+                <ScalarProperty Name="TimeFrom" ColumnName="TimeFrom" />
+                <ScalarProperty Name="TimeTo" ColumnName="TimeTo" />
+                <ScalarProperty Name="Voucher" ColumnName="Voucher" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels">
+            <EntityTypeMapping TypeName="Database1Model.Hotel">
+              <MappingFragment StoreEntitySet="Hotel">
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+                <ScalarProperty Name="CategoryGroupCode" ColumnName="CategoryGroupCode" />
+                <ScalarProperty Name="ChainCode" ColumnName="ChainCode" />
+                <ScalarProperty Name="AccommodationTypeCode" ColumnName="AccommodationTypeCode" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="License" ColumnName="License" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Ranking" ColumnName="Ranking" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HotelImages">
+            <EntityTypeMapping TypeName="Database1Model.HotelImage">
+              <MappingFragment StoreEntitySet="HotelImage">
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="ImageTypeCode" ColumnName="ImageTypeCode" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="ImageOrder" ColumnName="ImageOrder" />
+                <ScalarProperty Name="VisualOrder" ColumnName="VisualOrder" />
+                <ScalarProperty Name="RoomCode" ColumnName="RoomCode" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="CharacteristicCode" ColumnName="CharacteristicCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InterestPoints">
+            <EntityTypeMapping TypeName="Database1Model.InterestPoint">
+              <MappingFragment StoreEntitySet="InterestPoint">
+                <ScalarProperty Name="InterestPointId" ColumnName="InterestPointId" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="FacilityCode" ColumnName="FacilityCode" />
+                <ScalarProperty Name="FacilityGroupCode" ColumnName="FacilityGroupCode" />
+                <ScalarProperty Name="POIName" ColumnName="POIName" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="Database1Model.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="RoomCode" ColumnName="RoomCode" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="CharacteristicCode" ColumnName="CharacteristicCode" />
+                <ScalarProperty Name="IsParentRoom" ColumnName="IsParentRoom" />
+                <ScalarProperty Name="MinPax" ColumnName="MinPax" />
+                <ScalarProperty Name="MaxPax" ColumnName="MaxPax" />
+                <ScalarProperty Name="MaxAdults" ColumnName="MaxAdults" />
+                <ScalarProperty Name="MaxChildren" ColumnName="MaxChildren" />
+                <ScalarProperty Name="MinAdults" ColumnName="MinAdults" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomFacilities">
+            <EntityTypeMapping TypeName="Database1Model.RoomFacility">
+              <MappingFragment StoreEntitySet="RoomFacility">
+                <ScalarProperty Name="RoomFacilityId" ColumnName="RoomFacilityId" />
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="FacilityCode" ColumnName="FacilityCode" />
+                <ScalarProperty Name="FacilityGroupCode" ColumnName="FacilityGroupCode" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="IndLogic" ColumnName="IndLogic" />
+                <ScalarProperty Name="IndYesOrNo" ColumnName="IndYesOrNo" />
+                <ScalarProperty Name="Voucher" ColumnName="Voucher" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomStays">
+            <EntityTypeMapping TypeName="Database1Model.RoomStay">
+              <MappingFragment StoreEntitySet="RoomStay">
+                <ScalarProperty Name="RoomStayId" ColumnName="RoomStayId" />
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="StayType" ColumnName="StayType" />
+                <ScalarProperty Name="StayOrder" ColumnName="StayOrder" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomStayFacilities">
+            <EntityTypeMapping TypeName="Database1Model.RoomStayFacility">
+              <MappingFragment StoreEntitySet="RoomStayFacility">
+                <ScalarProperty Name="RoomStayFacilityId" ColumnName="RoomStayFacilityId" />
+                <ScalarProperty Name="RoomStayId" ColumnName="RoomStayId" />
+                <ScalarProperty Name="FacilityCode" ColumnName="FacilityCode" />
+                <ScalarProperty Name="FacilityGroupCode" ColumnName="FacilityGroupCode" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Terminals">
+            <EntityTypeMapping TypeName="Database1Model.Terminal">
+              <MappingFragment StoreEntitySet="Terminal">
+                <ScalarProperty Name="TerminalId" ColumnName="TerminalId" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="TerminalCode" ColumnName="TerminalCode" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WildcardRoomDescriptions">
+            <EntityTypeMapping TypeName="Database1Model.WildcardRoomDescription">
+              <MappingFragment StoreEntitySet="WildcardRoomDescription">
+                <ScalarProperty Name="WildcardId" ColumnName="WildcardId" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="RoomCode" ColumnName="RoomCode" />
+                <ScalarProperty Name="CharacteristicCode" ColumnName="CharacteristicCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
